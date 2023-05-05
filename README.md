@@ -15,6 +15,8 @@ Lecturers
 
 **presentation date:** 07.06.2023
 
+**presentation slides:** [here](https://docs.google.com/presentation/d/1TQxzSwZhP2hEgyn25zosDGdqKApQDp5YY7Y8PASlIaE/edit?usp=sharing)
+
 **moderator:** Einwiller, Andreas
 
 **location:** room (HK 28) SR 101
@@ -35,3 +37,6 @@ Report
   * Identify strengths and weaknesses, question the assumptions, criticize the bad decisions in the papers
   * include the important results and conclusions
   * bonus points if you include the content from the papers outside of your assigned papers (such as any follow up works, new results etc)
+
+
+typesetting engine "xelatex" or "lualatex" instead of "latex" or "pdflatex"
