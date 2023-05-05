@@ -20,3 +20,5 @@
 *.glg
 *.gls
 *.ilg
+*.lot
+*.lof

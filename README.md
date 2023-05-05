@@ -40,3 +40,6 @@ Report
 
 
 typesetting engine "xelatex" or "lualatex" instead of "latex" or "pdflatex"
+
+
+You must change your typesetting engine to, e.g., "xelatex" or "lualatex"instead of "latex" or "pdflatex".

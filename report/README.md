@@ -1,5 +1,8 @@
 # Latex
 
+### compiling
+
+`latexmk main.tex`
 
 ### compiling glossary / acronyms
 

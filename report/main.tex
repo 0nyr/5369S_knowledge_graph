@@ -1,12 +1,14 @@
 % !TeX spellcheck = en_US
 % !TeX encoding = UTF-8
+% !TEX program = xelatex
 
 % VSCODE word wrap: ALT + Z
 % COMPILE WITH:
 % `latexmk`
+% latexmk -lualatex -pdf main.tex
 % You need lualatex and biber (in all TeXLive distributions)
 
-\documentclass[12pt]{article} % text width
+\documentclass[12pt]{report} % text width
 \usepackage[utf8]{inputenc} % encode text to utf8
 
 % paragraph formatting: https://www.overleaf.com/learn/latex/Paragraph_formatting
@@ -38,9 +40,9 @@
 ]{dirtytalk}
 \usepackage{csquotes}
 \usepackage[
-backend=biber,
-style=numeric,
-sorting=none
+    backend=biber,
+    style=numeric,
+    sorting=none
 ]{biblatex}
 % add commands for automatic cite/uncite distinction
 \DeclareBibliographyCategory{cited}
@@ -80,6 +82,10 @@ sorting=none
 \usepackage{hyphenat} % fix "overfull hbox" with slicing words using hyphenation
 \hyphenation{hy-phen-a-tion} % indicate all 3 permissible hyphenation points
 
+% where to put all images and figures
+\graphicspath{{img/}}
+
+
 % document info
 \title{What is a Knownledge Graph?}
 \author{Rascoussier, Florian Guillaume Pierre}
@@ -88,7 +94,7 @@ sorting=none
 % document content
 \begin{document}
 
-\input{inc/title.tex}
+\input{tex/title.tex}
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
