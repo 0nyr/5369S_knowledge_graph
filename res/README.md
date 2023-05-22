@@ -11,3 +11,12 @@
 [Marvin Hofer, Daniel Obraczka, Alieh Saeedi, Hanna Köpcke and Erhard Rahm. "Construction of Knowledge Graphs: State and Challenges" (2023)](https://arxiv.org/pdf/2302.11509.pdf)
 
 
+
+
+
+
+
+
+
+
+
