@@ -31,7 +31,11 @@ Not easy to define what knowledge is, so focus on "explicit knowledge": "somethi
 
 Graph theory: Theory ranging between computer science and mathematics that interests itself to the study of graphs. A graph is a kind of data structure consisting of nodes (aka vertices) and edges (arcs) that connect pairs of nodes. Based on the field and the shape of the graph, many properties can be deduced such as connectedness, cyclicity, planarity, as well as the presence of specific substructures like cliques or independent sets. These properties can provide valuable insights into the nature and characteristics of the system or network being modeled, enabling more effective analysis and decision-making. This theory is used to model and analyze various types of relationships and structures in a wide range of fields, including computer networks, social networks, biological networks, and many others.
 
-Knowledge graph?: "we define a knowledge graph as a graph of data intended to accumulate and convey knowledge of the real world, whose nodes represent entities of interest and whose edges represent potentially different relations between these entities." (p3).
+Knowledge graph?: "a graph of data intended to accumulate and convey knowledge of the real world, whose nodes represent entities of interest and whose edges represent potentially different relations between these entities." (p3).
+
+"Knowledge graphs serve as a common substrate of knowledge within an organisation or com-
+munity, enabling the representation, accumulation, curation, and dissemination of knowledge
+over time." (p31)
 
 ########## basic understanding
 "At the foundation of any knowledge graph is the principle of first modelling data as a graph" (p4)
@@ -177,12 +181,22 @@ I have been using a Heterogeneous Directed Edge-labelled Graph for representing 
 - KG creation: very little (5 lines) on KG creation or extraction, but covered in extended version
 - content complexity: While still comprehensive for newcomers, it is challenging for readers who are new to the field due to the complexity and profusion of topics discussed. The paper could benefit from a more gradual introduction to these complex topics.
 - Imbalanced topic discussion: While some crucial topics for newcomers like KG creation are not covered, other more advanced ones are presented with a lot of details like inductive reasoning or learning methods such as graph kernels and graph neural networks. While these are important subjects, the choice for such a focus is odd.
-- Lack of discussion on challenges: Too few discussions on challenges associated with  knowledge graphs, such as issues related to scalability, data quality, and the complexity of reasoning tasks.
+- Lack of discussion on challenges: Too few discussions (on conclusion) on challenges associated with  knowledge graphs, such as issues related to scalability, data quality, diversity ("managing contextual or multi-modal data" (p31), dynamicity (temporal and streaming data), usability and the complexity of reasoning tasks. 
 
 
 ## conclusion
 > include the important results and conclusions
 
+(KG21) 
+The paper titled "Knowledge Graphs" provides a comprehensive and in-depth exploration of knowledge graphs (KGs), their structure, and their applications. KGs are a structured form of data representation that uses a graph-based structure to depict real-world entities and the relationships between them. They are particularly useful for handling complex and interconnected data, providing a way to integrate, organize, and manage data from different sources while maintaining the semantic context and relationships between data points.
+
+Key elements to consider when working with KGs, as discussed in the paper, include Description Logics (DLs), which provide a logical formalization of KGs, and ontologies, which enable entailment and provide a precise definition of terms used in KGs. The paper also delves into the concept of inductive reasoning over KGs, discussing various methods such as graph kernels, graph neural networks, label propagation, and multi-modal learning.
+
+As for the quality of the paper, it stands out for its comprehensive coverage and clear explanations of complex concepts. It provides a valuable resource for anyone interested in understanding KGs, from beginners to experts in the field. However, the paper could benefit from more practical examples or case studies to illustrate the application of these concepts in real-world settings.
+
+In terms of readability, while the paper is well-structured and the content is clearly presented, the complexity of the topics discussed might make it challenging for readers who are new to the field. Nonetheless, for those with a background in the subject matter, the paper offers a deep and insightful exploration of KGs and their applications.
+
+Overall, the paper is a significant contribution to the field, offering a thorough and detailed examination of KGs that will likely prove useful for researchers and practitioners alike.
 
 
 
