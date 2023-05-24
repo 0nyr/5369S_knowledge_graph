@@ -148,12 +148,49 @@ mer graph is also a model of the latter graph" (p17). In short, two graphs are e
 DLs allow for making claims (known as axioms) about these elements. Axioms can be unary class relations on individuals (e.g., City(Santiago)) or binary property relations on individuals. Web Ontology Language (OWL) was heavily influenced by DLs, with OWL 2 DL language being a restricted fragment of OWL with decidable entailment.
 
 ########## inductive reasoning and learning
-Inductive reasoning is a process that involves making generalizations based on observed patterns. This could involve using machine learning techniques to predict missing links or infer new knowledge. The paper also discusses the challenges associated with inductive reasoning, such as the difficulty of handling noise, incompleteness and uncertainty in the data.
+Inductive reasoning is a process that involves making generalizations based on observed patterns. "Inductive reasoning generalises patterns from input observations, which are used to generate novel but potentially imprecise predictions." (p20) This could involve using machine learning techniques to predict missing links or infer new knowledge. The paper also discusses the challenges associated with inductive reasoning, such as the difficulty of handling noise, incompleteness and uncertainty in the data.
+
+Different processing framework for large-scale graph processing exists like "Apache Spark (GraphX) [26, 148], GraphLab [78], Pregel [80], Signal–Collect [126], Shark [149], and so on." (p22)
+
+Induction techniques regroup:
+* graph analytics: " well-known algorithms are used to detect communities or clusters, find central nodes and edges, and so on, in a graph" (p20). Regroup many popular analytical algorithms, on the following categories
+	* centrality analysis: algorithms focused on identifying the most important nodes of a graph: PageRank, HITS...
+	* community detection: identify densely-connected subgraphs (communities): minimum-cut algorithms, label propagation, Louvain modularity...
+	* connectivity analysis: analysis on the graph connectiveness, with a range of metrics and algorithmns like graph density, strongly or weakly connected components, spanning trees, minimum cuts...
+	* node similarity: identify similar nodes, for instance, based on their connected neighbourhood. Many metrics exists like structural equivalence, random walks, diffusion kernels...
+	* graph summarisation: identify high-level structures, useful for getting an overview of a big graph
+
+* knowledge graph embeddings: "learn a low-dimensional numerical model of elements of a knowledge graph" (p20). ML techniques can be used on KG for a wide range of applications: "recommendation [155], information extraction [135], question answering [60], query relaxation [139], query approximation [45], and so on." (p23). The issue is that ML often requires working with numerical values like vectors, not graphs. Going from graphs to vector is known as embedding. 
+	* adjascency sparse matrix: matrix for every node, of its connections with other nodes. Impractical as mostly full of zeros, and huge. What we want is a dense, low dimensionality representation of the graph. 
+	* plausibility embedding: vectors for nodes (entity embedding) and for edge labels (relation embedding), and a scoring function learned from the graph that determines the plausibility (possible existence) of a given edge, like DistMult method: "The resulting embeddings can then be seen as models learned through self-supervision that encode (latent) features of the graph, mapping input edges to output plausibility scores." (p23) A drawback is that "DistMult does not capture edge direction." (p25)
+	* translational models: "interpret edge labels as transformations from
+subject nodes" (p23). The embedding trys to learn distances of transformations by summing vectors. But this doesn't works well due to the curse of dimensionality so other approches have been developped using different spaces like distinct hyperplanes or hyperbolic space thag give more "space" to distinguish entities.  
+	* tensor decomposition models: A tensor is a generalization of scalars, vectors and matrices to higher dimensionalities. Tensor decomposition is the process of capturing latent factor of high dimensional tensors to smaller dimensional tensors. Several approches exist like RESCAL that relies on rank decomposition similar to plausibility embedding (like DistMul), but using matrices instead of vectors. This helps to capture edge direction by combining values of many dimensions (many edges). Other methods: ComplEx (complex vectors), HolE (circular correlation operator), SimplE (CP-decomposition), TuckEr (Trucker Decomposition...).
+	* neural models: Use of neural networks for learning non-linear scoring (plausibility) functions. A range of networks can be used like the now classical Multi Layer Perceptron or more specific implementations like Multi Layer Perceptron that tries to learn parameters by computing two scoring function and comparing their dot-product. New approaches take advantage of the powerful convolutional kernels.
+	* language models: Range of techniques that tend to transform a graph into text so as to take advantage of powerful NLP ML techniques. For instance, "RDF2Vec performs biased random walks on the graph and records the paths traversed as “sentences,” which are then fed as input into the word2vec [83] model." 
+	* entailment-aware models: It is possible to take advantage of ontologies and sets of rule for embedding, so as to refine predictions or scoring functions. "More recent approaches rather propose joint embeddings that consider both the data graph and rules." (p26). For instance, KALE uses TransE emdedding with fuzzy logic to integrate the rules to its embedding. 
+p27
+
+
+
+* graph neural networks: supervised learning using the graph structure itself
+
+
+* symbolic learning: "learn symbolic models—i.e., logical formulae in the form of rules or
+axioms—from a graph in a self-supervised manner." (p20)
+
+
+
 
 Learning on graph is possible using a wide range of techniques.
 * Learning from the Graph Structure: methods such as graph kernels, which are used to measure the similarity between different parts of a graph, and graph neural networks, which are used to learn representations of nodes, edges, or entire graphs. The paper also mentions the use of graph embeddings, which are vector representations of nodes or edges that capture their structural roles and relationships in the graph.
 * Learning from the Graph Content: learning from the content of the graph, such as the labels on nodes and edges. It mentions methods such as label propagation, which spreads labels from labeled nodes to unlabeled ones, and semi-supervised learning, which uses a small amount of labeled data to guide the learning process. The paper also discusses the use of multi-modal learning, which combines different types of data (e.g., text, images, etc.) associated with nodes or edges.
 * Learning from the Graph Context: learning from the context of the graph, such as the temporal or spatial information associated with nodes or edges. It mentions methods such as temporal graph neural networks, which model the evolution of graphs over time, and spatial graph convolutional networks, which capture spatial dependencies between nodes.
+
+
+
+
+
 
 
 ## KG in real life
@@ -180,15 +217,16 @@ I have been using a Heterogeneous Directed Edge-labelled Graph for representing 
 - Focused on core theorical concepts: It would benefit from more practical examples or case studies showing how these concepts are applied in real-world settings.
 - KG creation: very little (5 lines) on KG creation or extraction, but covered in extended version
 - content complexity: While still comprehensive for newcomers, it is challenging for readers who are new to the field due to the complexity and profusion of topics discussed. The paper could benefit from a more gradual introduction to these complex topics.
-- Imbalanced topic discussion: While some crucial topics for newcomers like KG creation are not covered, other more advanced ones are presented with a lot of details like inductive reasoning or learning methods such as graph kernels and graph neural networks. While these are important subjects, the choice for such a focus is odd.
+- Imbalanced topic discussion: While some crucial topics for newcomers like KG creation are not covered, other more advanced ones are presented with a lot of details like inductive reasoning or learning methods such as graph kernels and graph neural networks. While these are important subjects, the choice for such a focus is odd considering the targeted audience.
 - Lack of discussion on challenges: Too few discussions (on conclusion) on challenges associated with  knowledge graphs, such as issues related to scalability, data quality, diversity ("managing contextual or multi-modal data" (p31), dynamicity (temporal and streaming data), usability and the complexity of reasoning tasks. 
+- Some unclear explainations: p22, the explaination example of PageRank is really unclear, with no scheme, as well as mathematical expressions directly in the text with some symbols like |V| being unspecified (and have to be guessed by the reader, here, number of nodes in the graph).
 
 
 ## conclusion
 > include the important results and conclusions
 
 (KG21) 
-The paper titled "Knowledge Graphs" provides a comprehensive and in-depth exploration of knowledge graphs (KGs), their structure, and their applications. KGs are a structured form of data representation that uses a graph-based structure to depict real-world entities and the relationships between them. They are particularly useful for handling complex and interconnected data, providing a way to integrate, organize, and manage data from different sources while maintaining the semantic context and relationships between data points.
+This paper provides a comprehensive and in-depth exploration of knowledge graphs (KGs), structures, applications, and many related concepts. KGs are a structured form of data representation that uses a graph-based structure to depict real-world entities and the relationships between them. They are particularly useful for handling complex and interconnected data, providing a way to integrate, organize, and manage data from different sources while maintaining the semantic context and relationships between data points.
 
 Key elements to consider when working with KGs, as discussed in the paper, include Description Logics (DLs), which provide a logical formalization of KGs, and ontologies, which enable entailment and provide a precise definition of terms used in KGs. The paper also delves into the concept of inductive reasoning over KGs, discussing various methods such as graph kernels, graph neural networks, label propagation, and multi-modal learning.
 
