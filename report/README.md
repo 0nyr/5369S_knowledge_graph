@@ -24,7 +24,13 @@ Reading of 3 differents articles, mainly based on (KG21)(.
 ## development
 > summarize the papers
 
-##### what is KG
+##### A bit of history
+The history and evolution of the knowledge engineering discipline has seen significant transformation since its inception during the expert systems development phase in the 1980s. We can distinguish 4 periods ranging from 1955 to the present day, with each period introducing new requirements for knowledge production processes to overcome the limitations of systems developed in preceding periods.
+
+* Dawn of AI: initial focus on reliable and effective processes.
+* Expert Systems Era: Feigenbaum stressed the need for domain-specific focus for automated knowledge production, leading to the creation of expert systems. However, these systems proved to be brittle and hard to maintain, thus the need for scalable, globally distributed, and interoperable systems arose.
+* Semantic Web Era: Tim Berners-Lee advocated for a “Web of Data” based on linked data principles, standard ontologies, and data sharing protocols. This period saw the development of a globally federated open linked data cloud and techniques for ontology engineering. However, wider adoption was slow and led to the call for more developer-friendly tools and methods to deal with data noise and incompleteness.
+* Language Model Era: LLM are now everywhere (ChatGPT, Bard) due to recent advancements in neural network architectures and graphical processing hardware. Language models can either serve as knowledge bases that are queryable using natural language prompts or as a component in a knowledge production workflow.
 
 ########## knowledge & graph
 Not easy to define what knowledge is, so focus on "explicit knowledge": "something that is known and can be written down" (p4), composed of statements such as sentences, that are essentially sequences of words that draw relationship between concepts and data.
@@ -37,7 +43,7 @@ Knowledge graph?: "a graph of data intended to accumulate and convey knowledge o
 munity, enabling the representation, accumulation, curation, and dissemination of knowledge
 over time." (p31)
 
-########## basic understanding
+########## what is KG: basic understanding
 "At the foundation of any knowledge graph is the principle of first modelling data as a graph" (p4)
 
 "Graphs offer a flexible way to conceptualise, represent, and integrate diverse and incomplete data." p5
@@ -164,29 +170,21 @@ Induction techniques regroup:
 	* adjascency sparse matrix: matrix for every node, of its connections with other nodes. Impractical as mostly full of zeros, and huge. What we want is a dense, low dimensionality representation of the graph. 
 	* plausibility embedding: vectors for nodes (entity embedding) and for edge labels (relation embedding), and a scoring function learned from the graph that determines the plausibility (possible existence) of a given edge, like DistMult method: "The resulting embeddings can then be seen as models learned through self-supervision that encode (latent) features of the graph, mapping input edges to output plausibility scores." (p23) A drawback is that "DistMult does not capture edge direction." (p25)
 	* translational models: "interpret edge labels as transformations from
-subject nodes" (p23). The embedding trys to learn distances of transformations by summing vectors. But this doesn't works well due to the curse of dimensionality so other approches have been developped using different spaces like distinct hyperplanes or hyperbolic space thag give more "space" to distinguish entities.  
+subject nodes" (p23). The embedding trys to learn distances of transformations by summing vectors. But this doesn't works well due to the curse of dimensionality so other approches have been developped using different spaces like distinct hyperplanes or hyperbolic space thag give more "space" to distinguish entities.
 	* tensor decomposition models: A tensor is a generalization of scalars, vectors and matrices to higher dimensionalities. Tensor decomposition is the process of capturing latent factor of high dimensional tensors to smaller dimensional tensors. Several approches exist like RESCAL that relies on rank decomposition similar to plausibility embedding (like DistMul), but using matrices instead of vectors. This helps to capture edge direction by combining values of many dimensions (many edges). Other methods: ComplEx (complex vectors), HolE (circular correlation operator), SimplE (CP-decomposition), TuckEr (Trucker Decomposition...).
 	* neural models: Use of neural networks for learning non-linear scoring (plausibility) functions. A range of networks can be used like the now classical Multi Layer Perceptron or more specific implementations like Multi Layer Perceptron that tries to learn parameters by computing two scoring function and comparing their dot-product. New approaches take advantage of the powerful convolutional kernels.
 	* language models: Range of techniques that tend to transform a graph into text so as to take advantage of powerful NLP ML techniques. For instance, "RDF2Vec performs biased random walks on the graph and records the paths traversed as “sentences,” which are then fed as input into the word2vec [83] model." 
 	* entailment-aware models: It is possible to take advantage of ontologies and sets of rule for embedding, so as to refine predictions or scoring functions. "More recent approaches rather propose joint embeddings that consider both the data graph and rules." (p26). For instance, KALE uses TransE emdedding with fuzzy logic to integrate the rules to its embedding. 
 p27
 
-
-
-* graph neural networks: supervised learning using the graph structure itself
-
+* graph neural networks: supervised learning using the graph structure itself. A Neural network is by nature a "directed weighted graph, where nodes serve as artificial neurons, and edges serve as weighted connections (axons)." (p27). GNN (Graph Neural Network) is a kind of neural network where "where nodes are connected to their neighbours in the data graph." "GNNs have been used to perform classification over graphs encoding compounds, objects in images, documents, and so on;" (p27)
+	* Recursive graph neural networks (RecGNNs): Every node and label is associated with a vector encapsulating features, and every node has also a state vector that is updated with each recursion loop from the information of its neighbours. The recursion uses two functions called the *transition function* that gets information from a node neighbours and the *output function* that takes results from the previous function as well as the node's own state vector and features. "Both parametric functions can be learned using neural networks given a partial set of labelled nodes in the graph." (p27). The recursion is generally applied until a fixpoint is reached.
+	* Convolutional Graph Neural Networks (ConvGNNs): Convolutional neural networks (CNNs) are now a popular family of machine learning models that rely on the idea of applying small filters (kernels) over local regions of the dataset, for instance on subparts of images. The idea behing ConvGNNs is to implement the *transition function* as a convolution, however, the challenge here is that contrary to images where each pixel neighbourhood is easily predictable, this is not as straightforward for node neighbourhood. Different approaches are possible to tackle this issue, like "working with spectral or spatial reference representations of graphs that induce a more regular structure from the graph." (p28). Convolution layers can be diverses and applied generally a specified number of times.
 
 * symbolic learning: "learn symbolic models—i.e., logical formulae in the form of rules or
-axioms—from a graph in a self-supervised manner." (p20)
-
-
-
-
-Learning on graph is possible using a wide range of techniques.
-* Learning from the Graph Structure: methods such as graph kernels, which are used to measure the similarity between different parts of a graph, and graph neural networks, which are used to learn representations of nodes, edges, or entire graphs. The paper also mentions the use of graph embeddings, which are vector representations of nodes or edges that capture their structural roles and relationships in the graph.
-* Learning from the Graph Content: learning from the content of the graph, such as the labels on nodes and edges. It mentions methods such as label propagation, which spreads labels from labeled nodes to unlabeled ones, and semi-supervised learning, which uses a small amount of labeled data to guide the learning process. The paper also discusses the use of multi-modal learning, which combines different types of data (e.g., text, images, etc.) associated with nodes or edges.
-* Learning from the Graph Context: learning from the context of the graph, such as the temporal or spatial information associated with nodes or edges. It mentions methods such as temporal graph neural networks, which model the evolution of graphs over time, and spatial graph convolutional networks, which capture spatial dependencies between nodes.
-
+axioms—from a graph in a self-supervised manner." (p20) This makes possible to learn logic rules and reasoning, such that the decision making can rely on a well-defined explaination prodived by the model rather than on numerical values like it is the case with RecGNNs or ConvGNNs. Thoses models suffer from what is known as *out-of-vocabulary problem* which describe the issue that those models struggle to provide accurate results for unseen nodes or edges labels. By using symbolic learning, we focus the learning process on the hypotheses as explainable rules which works on a broader set of situations.
+ 	* Rule mining: The idea is to learn meaningful rules as logical patterns. Those patterns do no need to be always verified, but rather must be associated with a measure of how well they are verified in the graph. What we try to do is to find the rules that are well-verified and that have few exceptions. Several techniques exixts like AMIE.
+ 	* Axiom mining: axioms are a similar to rules but are intended to be more general. For instance, determining what are impossible cases from the graph. Thoses are called *disjointness constraints*. Other axioms can be found using more complex strategies like *disjointness constraints* ("given a set of positive nodes and negative nodes, the goal is to find a logical class description that divides the positive and negative sets." (p31)
 
 
 
@@ -219,11 +217,15 @@ I have been using a Heterogeneous Directed Edge-labelled Graph for representing 
 - content complexity: While still comprehensive for newcomers, it is challenging for readers who are new to the field due to the complexity and profusion of topics discussed. The paper could benefit from a more gradual introduction to these complex topics.
 - Imbalanced topic discussion: While some crucial topics for newcomers like KG creation are not covered, other more advanced ones are presented with a lot of details like inductive reasoning or learning methods such as graph kernels and graph neural networks. While these are important subjects, the choice for such a focus is odd considering the targeted audience.
 - Lack of discussion on challenges: Too few discussions (on conclusion) on challenges associated with  knowledge graphs, such as issues related to scalability, data quality, diversity ("managing contextual or multi-modal data" (p31), dynamicity (temporal and streaming data), usability and the complexity of reasoning tasks. 
-- Some unclear explainations: p22, the explaination example of PageRank is really unclear, with no scheme, as well as mathematical expressions directly in the text with some symbols like |V| being unspecified (and have to be guessed by the reader, here, number of nodes in the graph).
+- Some unclear explainations: p22, the explaination example of PageRank is really unclear, with no scheme, as well as mathematical expressions directly in the text with some symbols like |V| being unspecified (and have to be guessed by the reader, here, number of nodes in the graph). The distinction between rule mining and axiom mining is also very shallow and unclear, on p31.
+- mistake in a sentence: p29: "In more detail, we call the edges entailed by a rule and the set of positive edges (not including the entailed edge itself) the positive entailments of that rule. The number of entailments that are positive is called the support for the rule, while the ratio of a rule’s entailments that are positive is called the confidence for the rule [127]." (p29) -> Missing some words: "...we call the edges entailed by a rule <the entailments of the rule> and the set of positive edges (not including the entailed edge itself) the positive entailments of that rule."
 
 
 ## conclusion
 > include the important results and conclusions
+
+In conclusion, a knowledge graph is a powerful tool for modeling, storing, organizing and accessing complex information. By representing data as a network of interconnected nodes and edges, knowledge graphs enable us to navigate through the data in a natural and intuitive way. They are becoming increasingly important in today's data-driven world, and have a wide range of applications across many different industries and domains. As the amount of data we generate and collect continues to grow, knowledge graphs will become even more important in helping us to make sense of it all.
+
 
 (KG21) 
 This paper provides a comprehensive and in-depth exploration of knowledge graphs (KGs), structures, applications, and many related concepts. KGs are a structured form of data representation that uses a graph-based structure to depict real-world entities and the relationships between them. They are particularly useful for handling complex and interconnected data, providing a way to integrate, organize, and manage data from different sources while maintaining the semantic context and relationships between data points.
@@ -235,6 +237,9 @@ As for the quality of the paper, it stands out for its comprehensive coverage an
 In terms of readability, while the paper is well-structured and the content is clearly presented, the complexity of the topics discussed might make it challenging for readers who are new to the field. Nonetheless, for those with a background in the subject matter, the paper offers a deep and insightful exploration of KGs and their applications.
 
 Overall, the paper is a significant contribution to the field, offering a thorough and detailed examination of KGs that will likely prove useful for researchers and practitioners alike.
+
+
+
 
 
 

@@ -1,12 +1,12 @@
 % !TeX spellcheck = en_US
 % !TeX encoding = UTF-8
-% !TEX program = lualatex
+% !TEX program = pdflatex
 
 % VSCODE word wrap: ALT + Z
 % COMPILE WITH:
 % `latexmk`
-% latexmk -lualatex -pdf main.tex
-% You need lualatex and biber (in all TeXLive distributions)
+% latexmk -pdf main.tex
+% You need pdflatex and biber (in all TeXLive distributions)
 
 \documentclass[12pt]{article} % text width
 \usepackage[utf8]{inputenc} % encode text to utf8
@@ -16,13 +16,11 @@
 \setlength{\parskip}{1em}
 
 % better language support
-\usepackage{polyglossia}
-\setdefaultlanguage{english}
-\setotherlanguage{german}
+\usepackage[english, german]{babel}
 
-% use lualatex or xelatex
-\usepackage{fontspec} % font selection
-\usepackage[a4paper]{geometry}
+% use pdflatex
+\usepackage[T1]{fontenc} % font encoding
+\usepackage[a4paper,head=18.0pt]{geometry}
 \usepackage{graphicx}% for graphics
 \usepackage[onehalfspacing]{setspace}
 \usepackage{tocbasic}
@@ -65,6 +63,12 @@
 
 \newacronym{kg}{KG}{Knownledge Graph}
 \newacronym{foss}{FOSS}{Free and Open Source Software}
+\newacronym{rdf}{RDF}{Resource Description Framework}
+\newacronym{rdfs}{RDFS}{Resource Description Framework Schema}
+\newacronym{owl}{OWL}{Web Ontology Language}
+\newacronym{ml}{ML}{Machine Learning}
+\newacronym{nlp}{NLP}{Natural Language Processing}
+\newacronym{ke}{KE}{Knowledge Engineering}
 %\input{glossaries.tex} % acronyms definitions, failed to make in work on a separate file!!!
 
 % custom commands
@@ -83,12 +87,10 @@
 % where to put all images and figures
 \graphicspath{{img/}}
 
-% Add fancyhdr package and settings
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\fancyfoot[C]{\thepage}
+% customize the header and footer of the document
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\cfoot[\pagemark]{\pagemark}
 
 % document info
 \newcommand{\thetitle}{What is a Knownledge Graph?}
@@ -108,11 +110,11 @@
 
 % -- ABSTRACT
 \section*{Abstract}
-Knowledge graphs (\acrshort{kg}s) represent a powerful approach to organizing and structuring real-world information by modeling entities, their properties, and the relationships between them. As an enabling technology, KGs have gained significant traction in various domains such as natural language processing, information retrieval, recommendation systems, and semantic search. This paper provides a comprehensive introduction to knowledge graphs, outlining their use cases, the current state of research, and industry adoption.
+Knowledge graphs (\acrshort{kg}s) represent a powerful approach to organizing and structuring real-world information by modeling entities, their properties, and the relationships between them. As an enabling technology, \acrshort{kg}s have gained significant traction over the last decade in various domains such as \acrshort{nlp}, information retrieval, recommendation systems, and semantic search. This paper provides a comprehensive introduction to knowledge graphs, outlining their use cases, the current state of research, and industry adoption.
 
-By facilitating advanced querying, reasoning, and knowledge discovery, KGs have become instrumental in numerous applications. The integration of KGs with machine learning techniques, such as graph neural networks and entity embeddings, has further bolstered their capabilities in prediction and pattern recognition. Research efforts are concentrated on KG construction, embedding methods, reasoning techniques, and evaluation metrics, while addressing issues like scalability, incompleteness, and dynamic evolution.
+By facilitating advanced querying, reasoning, and knowledge discovery, \acrshort{kg}s have become instrumental in numerous applications. The integration of \acrshort{kg}s with machine learning techniques, such as graph neural networks and entity embeddings, has further bolstered their capabilities in prediction and pattern recognition. Research efforts are concentrated on \acrshort{kg} construction, embedding methods, reasoning techniques, and evaluation metrics, while addressing issues like scalability, incompleteness, and dynamic evolution.
 
-In the industry, major technology companies, including Google, Microsoft, and Facebook, have embraced KGs to enhance search engines, virtual assistants, and social media platforms. A rising number of startups and specialized firms are also employing KGs for diverse applications, ranging from drug discovery to fraud detection and smart manufacturing. Despite the considerable progress, challenges persist in areas such as data validation, real-time updates, privacy preservation, and usability. The current report discusses what are Knowledge Graphs, and introduces related concepts like \acrshort{kg} construction, embedding methods, reasoning techniques, and evaluation metrics, while addressing issues like scalability, incompleteness, and dynamic evolution. It also outlines the current state of research, industry adoption, and future directions to advance the adoption and impact of knowledge graphs.
+In the industry, major technology companies, including Google, Microsoft, and Facebook, have embraced \acrshort{kg}s to enhance search engines, virtual assistants, and social media platforms. A rising number of startups and specialized firms are also employing \acrshort{kg}s for diverse applications, ranging from drug discovery to fraud detection and smart manufacturing. Despite the considerable progress, challenges persist in areas such as data validation, real-time updates, privacy preservation, and usability. The current report discusses what are Knowledge Graphs, and introduces related concepts like \acrshort{kg} construction, embedding methods, reasoning techniques, and evaluation metrics, while addressing issues like scalability, incompleteness, and dynamic evolution. It also outlines the current state of research, industry adoption, and future directions to advance the adoption and impact of knowledge graphs.
 
 % -- Acknowledgements
 \section*{Acknowledgements}
