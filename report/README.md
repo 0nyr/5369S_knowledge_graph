@@ -56,6 +56,9 @@ data to evolve in a more flexible manner p2
 
 flexible way to organize data (not hierarchical, can represent incomplete information, no need for a precise schema 
 
+"Although the term knowledge graph goes back as far as 1973 [14], it gained popularity through the 2012 blog post1 about the Google KG. Afterwards, several related definitions of knowledge graphs were proposed, either in research papers [7, 9, 15–17] or by companies using or supporting KGs (OpenLink, Ontotext, Neo4J, TopQuadrant, Amazon, Diffbot2 , Google). Ehrlinger et al. [16] give a comprehensive overview of KG definitions and provide their
+own: "A knowledge graph acquires and integrates information into an ontology and applies a reasoner to derive new knowledge." Hogan et. al. [18] argue that this definition is very specific and excludes various industrial KGs which helped to popularize the concept. We therefore define KGs more inclusively as a graph of data consisting of semantically described entities and relations of different types that are integrated from different sources. Entities have a unique identifier. KG entities and relations are semantically described using an ontology or, more clearly, an ontological representation [19]. An ontological theory can define formal naming, category systems, properties, and relations between concepts, data, and entities that encompass one or several domains of discourse." [CKH23]
+
 ########## types of KG
 different types of graphs:
 NB: "data can typically be converted from one model to another; in our view, a knowledge graph can thus adopt any such graph data model" (p6)
@@ -80,9 +83,36 @@ used for: Web search, commerce, social networks, finance, among others:
 networks, finance, among others, where applications include search, recommendations, informa-
 tion extraction, personal agents, advertising, business analytics, risk assessment, automation, and more besides (p4)
 
-##### creation / extraction
-"Creation often involves integrating data from diverse sources, including direct
-human input; extraction from existing text, markup, legacy file formats, relational databases, other knowledge graphs; and so on." (p7)
+##### construction / creation / extraction
+> Based on CKG23
+
+Knowledge Graphs (KGs) are physical data integration systems that combine information from different sources into a new, logically centralized, graph-like representation. "Creation often involves integrating data from diverse sources, including direct human input; extraction from existing text, markup, legacy file formats, relational databases, other knowledge graphs; and so on." (KG21 p7)
+
+Knowledge Graphs (KGs) are physical data integration systems that combine information from different sources into a new, logically centralized, graph-like representation. Knowledge Graphs (KGs) are physical data integration systems that combine information from different sources into a new, logically centralized, graph-like representation.
+
+Requirements for quality KG construction:
+    * Input Data requirements: It should be possible to integrate a large number of data sources as well as a high amount of data. There should also be support for heterogeneous and potentially low-quality input data of different kinds such as structured, semi-structured, and multimodal unstructured data.
+    * Support for incremental KG updates: It should be possible to process the input data both in a batch-like mode where all (new) input data is processed at the same time or in a streaming manner where new data items can continuously be ingested.
+    * Tooling/pipelining: A toolset for KG construction should be able to define and execute different pipelines depending on the data sources to be integrated and specific requirements, e.g., for incremental updates.
+    * Quality assurance: The correctness (accuracy, consistency) aspect implies that each entity, concept, relation, and property is canonicalized by having a unique identifier and being included exactly once. The freshness aspect requires a continuous update of the instance and ontological information in a KG to incorporate all relevant data source changes.
+
+KG construction tasks and approaches:
+* Data Acquisition & Preprocessing: This task involves the selection of relevant sources, acquisition and transformation of relevant source data, and initial data cleaning. Source selection and filtering are typically manual steps but can be supported by data catalogs providing descriptive metadata about sources and their contents.
+
+* Metadata Management: This task involves the acquisition and management of different kinds of metadata, such as provenance of entities, structural metadata, temporal information, quality reports, and process logs.
+
+* Ontology Management: This task involves the creation and incremental evolution of a KG ontology.
+
+* Knowledge Extraction (KE): This task involves the derivation of structured information and knowledge from unstructured or semi-structured data. Techniques used include named entity recognition, entity linking, and relation extraction. If necessary, this also entails the canonicalization of entity and relation identifiers.
+
+* Entity Resolution (ER) and Fusion: This task involves the identification of matching entities and their fusion within the KG.
+
+* Quality Assurance (QA): This task involves identifying and repairing data quality problems in the KG. Quality problems can relate to the ontological consistency, the data quality of entities and relations (comprehensiveness), or domain coverage.
+
+* Knowledge Completion: This task involves extending a given KG, for example, by learning missing type information, predicting new relations, and enhancing domain-specific data (polishing).
+
+The paper emphasizes that a construction pipeline does not necessarily follow a fixed execution order for the individual tasks and that not all steps may be required depending on the KG use case. This is because the required tasks depend on the type of source input. Furthermore, data and metadata management play a special role compared to the other tasks, since they are necessary throughout the entire pipeline, representing a cross-cutting task.
+
 
 ##### querying
 * SPARQL query language for RDF graphs
@@ -202,7 +232,7 @@ I have been using a Heterogeneous Directed Edge-labelled Graph for representing 
 ## paper evaluations
 > Identify strengths and weaknesses, question the assumptions, criticize the bad decisions in the papers
 
-(KG21):
+[KG21]:
 + do not assume that readers have specific expertise on knowledge graphs, and as such can be very informative for readers that want to grasp a good overview of what are KG.
 + meta-analysis: 13 external papers and books reviewed
 + extended online version
@@ -219,7 +249,18 @@ I have been using a Heterogeneous Directed Edge-labelled Graph for representing 
 - Lack of discussion on challenges: Too few discussions (on conclusion) on challenges associated with  knowledge graphs, such as issues related to scalability, data quality, diversity ("managing contextual or multi-modal data" (p31), dynamicity (temporal and streaming data), usability and the complexity of reasoning tasks. 
 - Some unclear explainations: p22, the explaination example of PageRank is really unclear, with no scheme, as well as mathematical expressions directly in the text with some symbols like |V| being unspecified (and have to be guessed by the reader, here, number of nodes in the graph). The distinction between rule mining and axiom mining is also very shallow and unclear, on p31.
 - mistake in a sentence: p29: "In more detail, we call the edges entailed by a rule and the set of positive edges (not including the entailed edge itself) the positive entailments of that rule. The number of entailments that are positive is called the support for the rule, while the ratio of a rule’s entailments that are positive is called the confidence for the rule [127]." (p29) -> Missing some words: "...we call the edges entailed by a rule <the entailments of the rule> and the set of positive edges (not including the entailed edge itself) the positive entailments of that rule."
+- Would benefit from a clearer presentation of the differences between deductive and inductive reasoning. The paper consider that the reader is already familiar with thoses differences and dives directly into advances concepts.
 
+[CKG23]
++ state of the art
++ extensive documentation and references (more than 250 references)
+- preprint, available on Arxiv
+
+
+Paper Overview
+Contributions
+Improvements to the State-of-the-Art
+Main Results
 
 ## conclusion
 > include the important results and conclusions
@@ -239,7 +280,8 @@ In terms of readability, while the paper is well-structured and the content is c
 Overall, the paper is a significant contribution to the field, offering a thorough and detailed examination of KGs that will likely prove useful for researchers and practitioners alike.
 
 
-
+# Question for moderator
+* what's the difference between inductive and deductive reasoning, especially in the context of KG ?
 
 
 
