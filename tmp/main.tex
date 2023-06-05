@@ -1,0 +1,187 @@
+% !TeX spellcheck = en_US
+% !TeX encoding = UTF-8
+% !TEX program = pdflatex
+
+% VSCODE word wrap: ALT + Z
+% COMPILE WITH:
+% `latexmk`
+% latexmk -pdf main.tex
+% You need pdflatex and biber (in all TeXLive distributions)
+
+\documentclass[12pt]{article} % text width
+\usepackage[utf8]{inputenc} % encode text to utf8
+
+% paragraph formatting: https://www.overleaf.com/learn/latex/Paragraph_formatting
+\setlength{\parindent}{1em}
+\setlength{\parskip}{1em}
+
+% better language support
+\usepackage[english]{babel}
+
+% use pdflatex
+\usepackage[T1]{fontenc} % font encoding
+\usepackage[a4paper,head=18.0pt]{geometry}
+\usepackage{graphicx}% for graphics
+\usepackage[onehalfspacing]{setspace}
+\usepackage{tocbasic}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[]{scrlayer-scrpage}
+
+% quotes and bibliography: https://www.overleaf.com/learn/latex/Typesetting_quotations
+\usepackage{csquotes}
+\usepackage{dirtytalk}
+\DeclareQuoteStyle{english}{\glqq}{\grqq}{\glq}{\grq}
+
+% \usepackage[
+%     backend=biber,
+%     style=numeric,
+%     sorting=none
+% ]{biblatex}
+\usepackage[backend=biber, style=numeric, defernumbers=true]{biblatex}
+% add commands for automatic cite/uncite distinction
+\DeclareBibliographyCategory{cited}
+\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+\addbibresource{biblio.bib} % bibliography
+\nocite{*} % all references
+
+\newcommand{\ts}{\textsuperscript} % superscript for 2nd or XIXème
+
+\pagenumbering{roman} % set page numbering of front matter sections
+
+% use acronyms and glossaries
+% toc: add glossary to table of contents
+\usepackage{hyperref}
+\usepackage[acronym, toc]{glossaries} 
+\makeglossaries
+\newglossaryentry{nodes}
+{
+    name=nodes,
+    description={A node is an entity in a graph, it can be a person, a place, a thing, or any other entity.}
+}
+
+\newacronym{kg}{KG}{Knownledge Graph}
+\newacronym{foss}{FOSS}{Free and Open Source Software}
+\newacronym{rdf}{RDF}{Resource Description Framework}
+\newacronym{rdfs}{RDFS}{Resource Description Framework Schema}
+\newacronym{owl}{OWL}{Web Ontology Language}
+\newacronym{ml}{ML}{Machine Learning}
+\newacronym{nlp}{NLP}{Natural Language Processing}
+\newacronym{ke}{KE}{Knowledge Engineering}
+%\input{glossaries.tex} % acronyms definitions, failed to make in work on a separate file!!!
+
+% custom commands
+% escape char in latex: https://tex.stackexchange.com/questions/34580/escape-character-in-latex
+% horizontal spacing: https://tex.stackexchange.com/questions/74353/what-commands-are-there-for-horizontal-spacing/74354
+\newcommand{\p}{\texttt{+}} % small unary plus
+\newcommand{\doublep}{\texttt{++}} % double small unary plus
+\newcommand{\m}{\texttt{-} \space} % small unary minus
+\newcommand{\doublem}{\texttt{-}\texttt{-} \space} % double small unary minus
+
+% code 
+\usepackage{listings}
+\usepackage{hyphenat} % fix "overfull hbox" with slicing words using hyphenation
+\hyphenation{hy-phen-a-tion} % indicate all 3 permissible hyphenation points
+
+% where to put all images and figures
+\graphicspath{{img/}}
+
+% customize the header and footer of the document
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\cfoot[\pagemark]{\pagemark}
+
+% document info
+\newcommand{\thetitle}{What is a Knownledge Graph?}
+\newcommand{\theauthor}{Rascoussier, Florian Guillaume Pierre}
+
+\title{\thetitle}
+\author{\theauthor}
+\date{April-Mai 2023}
+
+% document content
+\begin{document}
+
+\input{tex/title.tex}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% -- ABSTRACT
+\section*{Abstract}
+...
+
+% -- Acknowledgements
+\section*{Acknowledgements}
+I would like to express my sincere gratitude to all the participants of the seminar on Knowledge Graph for their valuable insights, discussions, and contributions. I am especially grateful to the esteemed lecturers, Prof. Dr. Alsayed Algergawy, Asha Mannarapotta Venugopal, and Vishvapalsinhji Ramsinh Parmar, whose expertise and guidance have been instrumental in shaping my understanding of this crucial topic. 
+
+A special acknowledgment goes to my monitor, Prof. Dr. Alsayed Algergawy, for his support, encouragement, and inspiration throughout the course of this work, especially for the selection of relevant papers to review. His knowledge and experience in the field have been invaluable in this seminar. I am deeply appreciative of his mentorship and the opportunity to learn from a distinguished expert in the realm of knowledge graphs.
+
+\newpage
+
+% table of content with list of figures & tables
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{arabic} % reset page numbering of main matter sections
+\section{Introduction}
+test test test test
+
+\section{What is a Knowledge Graph?}
+
+\subsection{Definition}
+
+\subsection{History}
+
+\subsection{Use cases}
+
+\subsection{Knowledge Graphs vs. Semantic Web}
+
+
+\section{Advances topics in Knowledge Graphs}
+
+\subsection{Construction}
+
+\subsection{Search and Reasoning}
+
+\subsection{Schema and Ontology}
+
+\subsection{Machine Learning}
+
+
+\section{Research and Industry}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% glossary and acronyms
+\newpage
+% \printglossary[type=\acronymtype, title=Acronymes]
+% \printglossary[title=Glossaire]
+\printglossary[type=\acronymtype]
+
+\printglossary
+
+% biblio
+\newpage
+\printbibliography[
+    heading=bibintoc,
+    category=cited,
+    title={References}
+]
+
+% uncited references (bibliography)
+% https://tex.stackexchange.com/questions/6967/how-to-split-bibliography-into-works-cited-and-works-not-cited
+\printbibliography[
+    notcategory=cited,
+    heading=bibintoc,
+    title={Additional bibliography},
+]
+
+
+\restoregeometry
+\end{document}
