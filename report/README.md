@@ -281,7 +281,90 @@ Overall, the paper is a significant contribution to the field, offering a thorou
 
 
 # Question for moderator
-* what's the difference between inductive and deductive reasoning, especially in the context of KG ?
+Andreas Einwiller: How is inductive and deductive reasoning related to ML and Ontologies/Rules?
+
+Notes from presentation:
+Slide: Inductive and deductive reasoning: What is that ?
+Source: [Wikipedia]
+Types of Reasoning
+2 fundamental methods: Deductive and Inductive reasoning
+Different in process and results
+Importance of Reasoning in KGs
+Essential for enhancing the utility of KGs.
+Enable predictions: missing links,
+○ discovery of new knowledge, rules
+○ improvement of the overall quality and completeness
+Facilitate complex queries and advanced analytics on the graph.
+
+Slide: Deductive Reasoning
+Top-down logical flow: General to specific
+Conclusion is certain if premises are true
+Example:
+1. All men are mortal. (General premise)
+2. Socrates is a man. (Specific premise)
+3. Therefore, Socrates is mortal. (Specific
+conclusion)
+Used to test theories and hypotheses
+Used to “deduce” new knowledge
+
+Slide: Importance of Reasoning in KGs
+
+Both deductive and inductive reasoning are essential for enhancing the utility of KGs.
+They enable the prediction of missing links, discovery of new knowledge, and improvement of the overall quality and completeness of the graph.
+They also facilitate complex queries and advanced analytics on the graph.
+
+Slide: Deductive Reasoning in KGs
+Infer new facts based on existing facts and rules in the graph.
+Follows a logical process: if all premises are true, then the conclusion must also be true.
+Example: If we know that "Paris is a city" (fact) and "All cities are populated areas" (rule),
+we can deduce that "Paris is a populated area" (new fact).
+This process is also known as "knowledge graph completion" or "link prediction".
+
+Slide: A range of methods
+Ontologies
+Definition: An ontology is a formal representation of what terms mean within the scope in which they are used.
+Shared ontologies make KGs more interoperable.
+Examples: Web Ontology Language (OWL) by W3C, Open Biomedical Ontologies Format (OBOF).
+Deduction, Inference, and Entailment
+
+Deduction: Process of deriving new data from what is already given and some implicit or explicit rules.
+Inference: Process of deriving or deducing new facts or knowledge from the existing data in the graph.
+Entailment: Deductive process where a relationship between statements or sets of statements where the truth of one
+statement or set necessarily implies the truth of another.
+Inference Rules and Description Logics (DLs)
+
+Inference Rules: If-then (body-head) like statements with body and head being graph patterns.
+Description Logics (DLs): DLs come from First Order Logic (FOL), based on 3 types: Individuals, Classes, Properties
+DLs allow for making claims (known as axioms) about these elements.
+
+Slide: Inductive Reasoning
+Bottom-up logical ﬂow: Speciﬁc to general
+Conclusion is probable, based on truth of
+premises
+Example:
+○ The sun has risen in the east every
+morning so far. (Speciﬁc observation)
+○ Therefore, the sun will rise in the east
+tomorrow. (General conclusion)
+Used in the formation of hypotheses and
+theories
+
+Slide: Inductive Reasoning in KGs
+Inductive reasoning in KGs is about learning new rules based on patterns observed in the
+data.
+It follows a probabilistic process: speciﬁc observations are generalized into rules, which are
+likely but not guaranteed to be true.
+Example: If we observe many instances of a relationship like "Person works at Company"
+and "Company is located in City", we might induce a rule like "Person lives in City".
+This process is often used in "rule mining" or "entity prediction" in KGs.
+
+Slide: A range of methods
+
+
+
+Amandeep Gill:  How do knowledge graphs handle scalability issues, and what are the associated trade-offs?
+
+Chirag: Could you explain a bit more as to how exactly knowledge graph is best suitable for machine learning?
 
 
 

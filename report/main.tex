@@ -282,11 +282,51 @@ The paper provides an overview of the evolution of knowledge engineering since t
 
 The paper is well-structured and presents a clear progression of ideas. It provides valuable insights into the history and evolution of knowledge engineering, making it relevant for anyone in the field. The paper contributes to the understanding of the changing requirements and challenges in knowledge engineering over time and raises important questions about the future of knowledge engineering, particularly in relation to knowledge graphs.
 
+\section{Questions raised during the presentation}
+
+\subsection{Andreas Einwiller: How is inductive and deductive reasoning related to ML and Ontologies/Rules?}
+
+Deductive and inductive reasoning are fundamental methods used in knowledge graphs (KGs) and are closely related to machine learning and ontologies/rules.
+
+Deductive reasoning is a top-down logical process that moves from general to specific. In the context of KGs, it involves inferring new facts based on existing facts and rules in the graph. If all premises are true, then the conclusion must also be true. Let's use the classical example about Socrates: if we know that "all men are mortal" (general premise, fact) and that "Socrates is a man" (specific premise, rule), we can thus \textit{deduce} that "Socrates is mortal" (specific conclusion, new deduced fact). This process is also known as "knowledge graph completion" or "link prediction". 
+
+Ontologies, which provide a formal representation of terms and their relationships, play a crucial role in deductive reasoning. They form the basis for the rules used in this process. Inference rules and Description Logics (DLs) are used to make claims (known as axioms) about these elements, facilitating the process of deduction. Machine learning is also widely used to automate the process of deductive reasoning in KGs. For example, machine learning algorithms can be trained to predict missing links or infer new facts based on patterns in the existing data.
+
+Inductive reasoning, on the other hand, is a bottom-up logical process that moves from specific to general. In the context of KGs, it involves learning new rules based on patterns observed in the data. It follows a probabilistic process: specific observations are generalized into rules, which are likely but not guaranteed to be true. A simple example of inductive reasoning could be that "all observed swans are white, therefore all swans are white". As history has shown, this is not necessarily true, but it is likely to be true. 
+
+For example, if we observe many instances of a relationship like "Person works at Company" and "Company is located in City", we might induce a rule like "Person lives in City". This process is often used in "rule mining" or "entity prediction" in KGs.
+
+Machine learning plays a significant role in inductive reasoning. Machine learning algorithms can be trained to identify patterns in the data and generate new rules based on these patterns. This allows KGs to continuously evolve and improve, enhancing their utility and effectiveness.
+
+In conclusion, both deductive and inductive reasoning are crucial for the construction and maintenance of KGs. Ontologies and rules provide the foundation for deductive reasoning, while machine learning techniques facilitate both deductive and inductive reasoning. The interplay between these elements enables KGs to continuously evolve and improve, enhancing their utility and effectiveness.
+
+\subsection{Amandeep Gill:  How do knowledge graphs handle scalability issues, and what are the associated trade-offs?}
+
+KG scalability is still a major challenge, especially in dynamic KGs where data is frequently updated \cite*{CKG23}. Scalability issues can be tackled through a variety of strategies, each with its own trade-offs.
+
+Large-scale KGs often leverage distributed storage systems and parallel processing frameworks to handle the vast amount of data. This allows for the storage and processing of data across multiple machines, thereby increasing capacity and speed. However, this approach can introduce complexity in terms of data management and can also increase the risk of data inconsistency. So as to limit the size of KGs, partitioning the graph into smaller more manageable subgraphs is another common strategy. This can be done based on various criteria such as the type of entities or relationships. While partitioning can significantly improve query performance, it can also lead to challenges in managing inter-partition relationships and can complicate queries that span multiple partitions.
+
+In order to speed up data retrieval, on can use indexing. By creating indexes on frequently accessed or queried data, the system can quickly locate the required data without scanning the entire graph. However, indexes can consume significant storage space and maintaining them can add overhead, especially in dynamic KGs where data is frequently updated. Caching is another strategy used to improve query performance. Frequently accessed data is stored in a cache for quick retrieval, similar to how computer memory is layed-out. While caching can significantly speed up data access, it requires careful management to ensure data consistency. Additionally, it is most effective with a high degree of data locality, when the same data is accessed repeatedly.
+
+For some types of queries, especially those involving complex graph algorithms, exact solutions can be computationally expensive or even impossible (taking infinite process time). In such cases, approximation techniques can be used to provide near-optimal solutions more efficiently, with some accuracy trade-off. In some cases, inferred knowledge (knowledge that can be deduced from existing facts and rules) can be precomputed and stored, or materialized, in the graph. This can speed up query processing but at the cost of increased storage requirements and potential issues with keeping the materialized knowledge up-to-date.
+
+Thus, handling scalability in KGs involves finding balance between performance, storage requirements, complexity, and accuracy. The specific trade-offs depend on the characteristics of the KG and the specific requirements of the use case. However, it is important to note that scalability is still a major challenge in KGs.
+
+\subsection{Chirag Natesh Vijay: Could you explain a bit more as to how exactly knowledge graph is suitable for machine learning?}
+
+KGs are particularly suitable for machine learning for a range of reasons. KGs provide a rich, structured representation of data, capturing not only entities but also the relationships between them \cite*{KG21}. This allows ML models to leverage this relational information, which can provide important context and improve performance. The inherent nature of KGs makes it easier to generate features for ML models. For example, the properties of an entity, the types of relationships it has with other entities, or the structure of its neighborhood in the graph can all be used as features.
+
+KGs are also naturally suited to relational learning or graph-based ML methods. Techniques such as Graph Neural Networks (GNNs) or Graph Convolutional Networks (GCNs) can leverage the graph structure of KGs to propagate information across the graph and learn more accurate models \cite*{KG21}. KGs can facilitate transfer learning, where knowledge learned in one context is applied to another. For example, a model trained on one part of the KG can potentially be applied to other parts of the KG, leveraging the shared structure and semantics (onthologies, rules, etc).
+
+KGs often contain a mix of labeled and unlabeled data, making them suitable for semi-supervised learning approaches. These methods can leverage the large amounts of unlabeled data to improve learning from the smaller amounts of labeled data. The structures and relations and rules can also help with explainability in ML. The reasoning paths in a KG can provide intuitive, human-understandable explanations for the predictions of an ML model.
+
+In conclusion, KGs provide a rich, structured, and semantically meaningful source of data that can enhance various aspects of machine learning, from feature generation and model training \cite*{KG21} to transfer learning and explainability.
+
 \section{Conclusion}
 
-This report has provided a comprehensive review of three key papers in the field of Knowledge Graphs (KGs). Each paper was critically evaluated based on its contributions, improvements, and overall quality. The main paper, "Knowledge Graphs" [KG21], provides an in-depth overview of KGs, with a focus on theoretical concepts. It is a valuable resource for anyone interested in understanding KGs, despite some areas that could benefit from further clarification or practical examples.
+This report has provided a comprehensive review of three key papers in the field of Knowledge Graphs (KGs). Each paper was critically evaluated based on its contributions, improvements, and overall quality. The main paper, \citetitle{KG21} \cite*{KG21}, provides an in-depth overview of KGs, with a focus on theoretical concepts. It is a valuable resource for anyone interested in understanding KGs, despite some areas that could benefit from further clarification or practical examples.
 
-The second paper, "Constructing Knowledge Graphs" [CKG23], offers a state-of-the-art review of KG construction, highlighting the need for more open-source toolsets and good data management. However, it is still a preprint and lacks practical examples. The third paper, "Knowledge Graphs and Knowledge Engineering" [KGKE22], provides valuable insights into the history and evolution of knowledge engineering. However, only section 3.2 was used for this review, limiting the scope of the critique.
+The second paper, \citetitle{CKG23} \cite*{CKG23}, offers a state-of-the-art review of KG construction, highlighting the need for more open-source toolsets and good data management. However, it is still a preprint and lacks practical examples. The third paper, \citetitle{KGKE22} \cite*{KGKE22}, provides valuable insights into the history and evolution of knowledge engineering. However, only section 3.2 was used for this review, limiting the scope of the critique.
 
 In conclusion, the field of KG have been rapidly evolving especially over the course of the last decade, with significant contributions being made in both theoretical concepts and practical applications. The reviewed papers provide valuable insights into this field and highlight areas for future research and improvement. This report has aimed to critically evaluate these papers and provide a comprehensive overview of the current state of KGs.
 
