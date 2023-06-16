@@ -218,9 +218,6 @@ axioms—from a graph in a self-supervised manner." (p20) This makes possible to
 
 
 
-
-
-
 ## KG in real life
 > Show example of how I use KG in my masterarbeit.
 

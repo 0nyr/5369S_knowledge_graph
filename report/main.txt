@@ -126,8 +126,8 @@ A special acknowledgment goes to my monitor, Prof. Dr. Alsayed Algergawy, for hi
 
 % table of content with list of figures & tables
 \tableofcontents
-%\listoffigures
-%\listoftables
+\listoffigures
+\listoftables
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,7 +156,7 @@ Defining knowledge is not a straightforward task, so this report will focus on "
 
 Graph theory is a field that lies at the intersection of computer science and mathematics and is concerned with the study of graphs. A graph is a type of data structure consisting of nodes (also known as vertices) and edges (or arcs) that connect pairs of nodes. Graph theory is used to model and analyze various types of relationships and structures in a wide range of fields, including computer networks, social networks, biological networks, and many others.
 
-A Knowledge Graph can be defined as \say{a graph of data intended to accumulate and convey knowledge of the real world, whose nodes represent entities of interest and whose edges represent potentially different relations between these entities} \cite[p.3]{KG21}. \say{Knowledge graphs serve as a common substrate of knowledge within an organization or community, enabling the representation, accumulation, curation, and dissemination of knowledge over time} \cite[p.31]{KG21}.
+A Knowledge Graph can be defined as "a graph of data intended to accumulate and convey knowledge of the real world, whose nodes represent entities of interest and whose edges represent potentially different relations between these entities" \cite[p.3]{KG21}. Knowledge graphs serve as a common substrate of knowledge within an organization or community, enabling the representation, accumulation, curation, and dissemination of knowledge over time \cite[p.31]{KG21}.
 
 \subsection{Knowledge Graphs}
 A Knowledge Graph is a data graph intended to accumulate and convey real-world knowledge. The nodes in the graph represent entities, and the edges represent relations between these entities. It serves as a common substrate for knowledge representation and dissemination. At the foundation of any knowledge graph is the principle of first modelling data as a graph \cite[p.4]{KG21}.
