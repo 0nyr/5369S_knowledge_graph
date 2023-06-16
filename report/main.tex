@@ -69,6 +69,10 @@
 \newacronym{ml}{ML}{Machine Learning}
 \newacronym{nlp}{NLP}{Natural Language Processing}
 \newacronym{ke}{KE}{Knowledge Engineering}
+\newacronym{del}{DEL}{Directed Edge-labelled Graphs}
+\newacronym{er}{ER}{Entity Resolution}
+\newacronym{qa}{QA}{Quality Assurance}
+\newacronym{sparql}{SPARQL}{SPARQL Protocol and RDF Query Language}
 %\input{glossaries.tex} % acronyms definitions, failed to make in work on a separate file!!!
 
 % custom commands
@@ -159,21 +163,29 @@ Graph theory is a field that lies at the intersection of computer science and ma
 A Knowledge Graph can be defined as \say{a graph of data intended to accumulate and convey knowledge of the real world, whose nodes represent entities of interest and whose edges represent potentially different relations between these entities} \cite[p.3]{KG21}. \say{Knowledge graphs serve as a common substrate of knowledge within an organization or community, enabling the representation, accumulation, curation, and dissemination of knowledge over time} \cite[p.31]{KG21}.
 
 \subsection{Knowledge Graphs}
-A Knowledge Graph is a data graph intended to accumulate and convey real-world knowledge. The nodes in the graph represent entities, and the edges represent relations between these entities. It serves as a common substrate for knowledge representation and dissemination. At the foundation of any knowledge graph is the principle of first modelling data as a graph \cite[p.4]{KG21}.
+\say{At the foundation of any knowledge graph is the principle of first modelling data as a graph} \cite[p.4]{KG21}. A Knowledge Graph is thus a data graph intended to accumulate and convey real-world knowledge. The nodes in the graph represent entities, and the edges represent relations between these entities. It serves as a common substrate for knowledge representation that is both flexible and extendable.
 
 \subsubsection*{A difficult definition}
-The term "knowledge graph" dates back to 1973, but it gained popularity through a 2012 blog post about Google's Knowledge Graph. Since then, several definitions of knowledge graphs have been proposed in research papers and by companies using or supporting KGs. For instance, Ehrlinger et al. define a knowledge graph as a structure that "acquires and integrates information into an ontology and applies a reasoner to derive new knowledge" \cite{TDKG16}. However, this definition is very specific and excludes various industrial KGs which helped to popularize the concept. Therefore, we define KGs more inclusively as a graph of data consisting of semantically described entities and relations of different types that are integrated from different sources. Entities have a unique identifier. KG entities and relations are semantically described using an ontology or, more clearly, an ontological representation \cite{CKG23}.
+The term "knowledge graph" first appeared in 1973, but really gained popularity through a 2012 blog post about Google's Knowledge Graph \cite*{googleblog2023knowledgegraph}. According to litterature, below are listed some of the most common definitions of Knowledge Graphs:
+\begin{itemize}
+    \item \say{A knowledge graph acquires and integrates information into an ontology and applies a reasoner to derive new knowledge.} \cite{TDKG16}
+    \item \say{A graph of data intended to accumulate and convey knowledge of the real world, whose nodes represent entities of interest and whose edges represent potentially different relations between these entities.} \cite{KG21}
+    \item \say{A graph of data consisting of semantically described entities and relations of different types that are integrated from different sources. Entities have a unique identifier. KG entities and relations are semantically described using an ontology or, more clearly, an ontological representation.} \cite{CKG23}
+\end{itemize}
+
+The very nature of KG makes any definition attempt difficult. Indeed, KG is a broad concept that can be applied to many different domains, use cases and can have diverse implementations. The definition of KGs is thus very context-dependent. However, the common denominator of all KGs is that they are graphs of data that represent some knowledge or information in a graph-structured representation.
 
 \subsubsection*{Understanding KG}
-At the foundation of any knowledge graph is the principle of first modelling data as a graph \cite[p.4]{KG21}. Graphs offer a flexible way to conceptualize, represent, and integrate diverse and incomplete data. Knowledge graphs use a graph-based data model to capture knowledge in application scenarios that involve integrating, managing and extracting value from diverse sources of data at large scale \cite[p.2]{KG21}. They have a number of benefits when compared with a relational model or NoSQL alternatives, such as the ability for data to evolve in a more flexible manner, and the capacity to organize data in a flexible way that is not hierarchical, can represent incomplete information, and does not require a precise schema \cite[p.2]{KG21}.
+
+Graphs offer a flexible way to conceptualize, represent, and integrate diverse and incomplete data. \say{Knowledge graphs use a graph-based data model to capture knowledge in application scenarios that involve integrating, managing and extracting value from diverse sources of data at large scale} \cite[p.2]{KG21}. They have a number of benefits when compared with a relational model or NoSQL alternatives, such as the ability for data to evolve in a more flexible manner, and the capacity to organize data in a way that is not hierarchical. They can represent incomplete information, and does not require a precise schema \cite[p.2]{KG21}.
 
 \subsubsection*{Types of KG}
 Knowledge graphs can adopt any graph data model, and data can typically be converted from one model to another. Some of the different types of graphs include:
 
 \begin{itemize}
-    \item \textbf{Directed Edge-labelled Graphs (DEL):} The classic graph, set of nodes and edges that connect the nodes with in certain way. RDF is a popular DEL data model.
+    \item \textbf{Directed Edge-labelled Graphs (DEL):} The classic graph, set of nodes and edges that connect the nodes with in certain way. \acrshort{rdf} is a popular \acrshort{del} data model.
     \item \textbf{Heterogeneous Graphs:} Each node and edge is assigned one type, allowing for partitioning nodes according to their type, which is useful for machine learning.
-    \item \textbf{Property Graphs:} Allows a set of property–value pairs and a label to be associated with nodes and edges. This model is used in Neo4j and offers great flexibility but is harder to handle and query.
+    \item \textbf{Property Graphs:} Allows a set of property-value pairs and a label to be associated with nodes and edges. This model is used in Neo4j and offers great flexibility but is harder to handle and query.
     \item \textbf{Graph Dataset:} A set of named graphs, with a default graph with no ID. Useful when working with different sources.
     \item \textbf{Hypergraphs:} Allow edges that connect sets rather than pairs of nodes.
 \end{itemize}
@@ -181,7 +193,7 @@ Knowledge graphs can adopt any graph data model, and data can typically be conve
 
 \subsection{Applications and Use Cases}
 
-Knowledge Graphs have found widespread application in both open and enterprise contexts. Open Knowledge Graphs are publicly accessible and often integrate data from various sources, while enterprise Knowledge Graphs are typically proprietary and used internally within organizations.
+Knowledge Graphs have found widespread application in both open source, research and enterprise contexts. Open Knowledge Graphs are publicly accessible and often integrate data from various sources, while enterprise Knowledge Graphs are typically proprietary and used internally within organizations.
 
 \subsubsection*{Open Knowledge Graphs}
 
@@ -210,17 +222,29 @@ These Knowledge Graphs are used in a wide range of applications including search
 
 \subsection{Construction, Creation, Extraction}
 
-Knowledge Graphs (KGs) are physical data integration systems that amalgamate information from a variety of sources into a logically centralized, graph-like representation. The creation of KGs often involves integrating data from diverse sources, including direct human input, extraction from existing text, markup, legacy file formats, relational databases, and other knowledge graphs. 
+Building Knowledge Graphs often require physical data integration systems that amalgamate information from a variety of sources into a logically centralized, graph-like representation. This creation process often involves integrating data from diverse sources, including direct human input, extraction from existing text, markup, legacy file formats, csv or json files, relational databases, or even other knowledge graphs. 
 
-The construction of KGs involves several tasks. Data Acquisition and Preprocessing involves the selection of relevant sources, acquisition and transformation of relevant source data, and initial data cleaning. Metadata Management involves the acquisition and management of different kinds of metadata, such as provenance of entities, structural metadata, temporal information, quality reports, and process logs. Ontology Management involves the creation and incremental evolution of a KG ontology. Knowledge Extraction (KE) involves the derivation of structured information and knowledge from unstructured or semi-structured data. Entity Resolution (ER) and Fusion involves the identification of matching entities and their fusion within the KG. Quality Assurance (QA) involves identifying and repairing data quality problems in the KG. Knowledge Completion involves extending a given KG, for example, by learning missing type information, predicting new relations, and enhancing domain-specific data.
+The construction of KGs involves several tasks. The initial step often consists in data acquisition and preprocessing. This phase involves the selection of relevant sources, acquisition and transformation of relevant source data, as well as initial data cleaning. Since the data used can be of diverse types, metadata management is important so as to deal with different kinds of metadata like the provenance of entities, structural metadata, temporal information, quality reports, and process logs. The complexity of integrating diverse data from different sources also lies in the ontology management. A simple approach to this is to allow incremental evolution of the ontology, but this can lead to inconsistencies and incoherences.
+
+Once the KG is in place, more valuable information can be extracted from it: this is the knowledge extraction phase. Knowledge Extraction (\acrshort{ke}) refers to the derivation of structured information and knowledge from unstructured or semi-structured data. This can be done through a range of techniques such as entity resolution and fusion, quality assurance, and knowledge completion. Entity Resolution (\acrshort{er}) and Fusion involves the identification of matching entities and their fusion within the KG. Quality Assurance (\acrshort{qa}) involves identifying and repairing data quality problems in the KG. Knowledge Completion involves extending a given KG, for example, by learning missing type information, predicting new relations, and enhancing domain-specific data.
 
 \subsection{Search and Querying}
 
-Querying KGs often involves the use of graph query languages such as SPARQL for RDF graphs and Cypher, Gremlin, and G-CORE \cite{KG21} for property graphs. These languages allow for the creation of graph patterns, which are graphs similar to the data being queried that can contain variables so that they can be evaluated to retrieve information from constants in the KG. Complex Graph Patterns combine several graph patterns with operators, while Navigational Graph Patterns use regular expressions for matching paths with support for more complex querying.
+Querying KGs often involves the use of graph query languages such as \acrshort{sparql} for \acrshort{rdf} graphs and Cypher, Gremlin, and G-CORE \cite{KG21} for property graphs. These languages allow for the creation of graph patterns, which are graphs similar to the data being queried that can contain variables so that they can be evaluated to retrieve information from constants in the KG. Graph patterns can follow either homomorphism-based semantics, which allow multiple variables to be mapped to the same term, or isomorphism-based semantics, which require variables on nodes and/or edges to be mapped to unique terms.
 
-\subsection{Schema, Ontology and Validation}
+In more complex scenarios, Complex Graph Patterns and Navigational Graph Patterns can be used. Complex Graph Patterns combine several graph patterns using operators, such as union, filter, and where. While powerful, these can generate duplicates in the answer. On the other hand, Navigational Graph Patterns use regular expressions for matching paths, supporting more complex querying similar to using regular expressions (disjunction, concatenation, set of possible values, etc.). However, these can generate an infinite number of paths, so it can be more efficient to only return nodes, which are always finite in number.
 
-Ontologies provide a formal representation of what terms mean within the scope in which they are used. They allow for the creation of assumptions, semantic conditions, individuals, properties, and classes. Validation of KGs involves ensuring certain properties in the graph depending on its uses. This can be achieved through the use of shapes graphs and conformance. Shapes Graphs are selected subsets of nodes, with specified constraints, usually expressed using UML diagrams. Conformance refers to a node conforming to a shape if it satisfies all of the constraints of the shape. A valid graph is such that every node conforms to a given shape.
+It is worth noting that graph query languages may support a range of other features such as aggregation, complex filters, datatype operators, sub-queries and so on \cite{KG21}. These additional features further enhance the flexibility and power of KG querying, enabling users to perform sophisticated data retrieval and analysis operations.
+
+\subsection{Validation, Schema and Ontology}
+
+Knowledge graphs, due to their inherent ability to represent incomplete and possibly incoherent data, often need some kind of validation processes in order to ensure certain properties within the graph depending on its intended use.
+
+Key concepts related to graph validation include Shapes Graphs, Conformance, and Context \cite{KG21}. Shapes Graphs are a selected subset of nodes, with specified constraints, typically expressed using UML diagrams. These can be either open or closed shapes, allowing or disallowing the node to have additional properties not specified by the shape. Conformance is another crucial aspect of validation. A node is said to conform to a shape if it satisfies all of the constraints of the shape. A valid graph is such that every node conforms to a given shape. Various shape languages extensions to RDF are available for this purpose, such as ShEx and SHACL. Context is also an important consideration during validation. Every piece of information exists with respect to a particular context. This, along with origin/provenance and time frame, defines the \say{scope of truth}. A context can be implicit or explicit and can be represented in various ways such as Direct Representation, Reification, Higher-arity Representation, annotations, and other more complex solutions.
+
+Ontologies provide a formal convention-like representation of what terms mean within the scope in which they are used. They allow for the creation of assumptions, semantic conditions, individuals, properties, and classes. Validation of KGs involves ensuring certain properties in the graph depending on its uses. This can be achieved through the use of shapes graphs and conformance as discussed earlier. Many ontologies already exist depending on the context and use cases, such as the Web Ontology Language (OWL) by W3C, which is \acrshort{rdf} compatible, and the Open Biomedical Ontologies Format (OBOF).
+
+Ontologies in knowledge graphs involve several key concepts such as Interpretations, Assumptions, Semantic Conditions, Individuals, Properties, and Classes. Interpretations refer to the mapping of nodes and edges to entities and relations in the real world. Assumptions dictate how knowledge graphs can be interpreted. Semantic Conditions are case-specific assumptions that facilitate reasoning and entailment in the graph. Individuals refer to real-life entities. Properties are terms that can be used as edge-labels. And Classes are groups of nodes under a similar type. Ontologies can be complex, with many more features like datatype facets, which involve defining new datatypes by applying restrictions to existing datatypes. Despite their complexity, ontologies play a crucial role in the construction and interpretation of knowledge graphs.
 
 \subsection{Deduction, Inference and Entailment}
 
