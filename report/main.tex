@@ -73,6 +73,8 @@
 \newacronym{er}{ER}{Entity Resolution}
 \newacronym{qa}{QA}{Quality Assurance}
 \newacronym{sparql}{SPARQL}{SPARQL Protocol and RDF Query Language}
+\newacronym{gnn}{GNN}{Graph Neural Network}
+\newacronym{gcn}{GCN}{Graph Convolutional Networks}
 %\input{glossaries.tex} % acronyms definitions, failed to make in work on a separate file!!!
 
 % custom commands
@@ -114,17 +116,17 @@
 
 % -- ABSTRACT
 \section*{Abstract}
-Knowledge graphs (\acrshort{kg}s) represent a powerful approach to organizing and structuring real-world information by modeling entities, their properties, and the relationships between them. As an enabling technology, \acrshort{kg}s have gained significant traction over the last decade in various domains such as \acrshort{nlp}, information retrieval, recommendation systems, and semantic search. This paper provides a comprehensive introduction to knowledge graphs, outlining their use cases, the current state of research, and industry adoption.
+Knowledge graphs (\acrshort{kg}s) represent a powerful approach to organizing and structuring real-world information by modeling entities, their properties, and the relationships between them. As an enabling technology that has seen major developments in the last decade, \acrshort{kg}s have gained significant traction in various domains such as \acrshort{nlp}, information retrieval, recommendation systems, and semantic search.
 
-By facilitating advanced querying, reasoning, and knowledge discovery, \acrshort{kg}s have become instrumental in numerous applications. The integration of \acrshort{kg}s with machine learning techniques, such as graph neural networks and entity embeddings, has further bolstered their capabilities in prediction and pattern recognition. Research efforts are concentrated on \acrshort{kg} construction, embedding methods, reasoning techniques, and evaluation metrics, while addressing issues like scalability, incompleteness, and dynamic evolution.
+By facilitating advanced querying, reasoning, and knowledge discovery, KGs have become instrumental in numerous applications. The integration of KGs with machine learning techniques, such as graph neural networks and entity embeddings, has further bolstered their capabilities in prediction and pattern recognition. In the industry, major technology companies, including Google, or Amazon have embraced KGs to enhance search engines, virtual assistants, and social media platforms. Major open-source projects are centered around KGs  Despite the considerable progress, challenges persist in areas such as data validation, real-time updates, privacy preservation, and usability. 
 
-In the industry, major technology companies, including Google, Microsoft, and Facebook, have embraced \acrshort{kg}s to enhance search engines, virtual assistants, and social media platforms. A rising number of startups and specialized firms are also employing \acrshort{kg}s for diverse applications, ranging from drug discovery to fraud detection and smart manufacturing. Despite the considerable progress, challenges persist in areas such as data validation, real-time updates, privacy preservation, and usability. The current report discusses what are Knowledge Graphs, and introduces related concepts like \acrshort{kg} construction, embedding methods, reasoning techniques, and evaluation metrics, while addressing issues like scalability, incompleteness, and dynamic evolution. It also outlines the current state of research, industry adoption, and future directions to advance the adoption and impact of knowledge graphs.
+The current report discusses what are Knowledge Graphs, and introduces related concepts like construction, embedding methods as well as reasoning techniques. As a seminar report, it is based on several papers and also include the questions raised during the presentation.  
 
 % -- Acknowledgements
 \section*{Acknowledgements}
-I would like to express my sincere gratitude to all the participants of the seminar on Knowledge Graph for their valuable insights, discussions, and contributions. I am especially grateful to the esteemed lecturers, Prof. Dr. Alsayed Algergawy, Asha Mannarapotta Venugopal, and Vishvapalsinhji Ramsinh Parmar, whose expertise and guidance have been instrumental in shaping my understanding of this crucial topic. 
+I would like to express my sincere gratitude to all the participants of the seminar on Knowledge Graph for their valuable insights, discussions, and contributions. 
 
-A special acknowledgment goes to my monitor, Prof. Dr. Alsayed Algergawy, for his support, encouragement, and inspiration throughout the course of this work, especially for the selection of relevant papers to review. His knowledge and experience in the field have been invaluable in this seminar. I am deeply appreciative of his mentorship and the opportunity to learn from a distinguished expert in the realm of knowledge graphs.
+A special acknowledgment goes to my monitor, Prof. Dr. Alsayed Algergawy, for his support, encouragement, and inspiration throughout the course of this work, especially for the selection of relevant papers to review. His knowledge and experience in the field have been invaluable in this seminar. I would also like to thank Andreas Einwiller for his guidance and feedback before and during the presentation and discussion session.
 
 \newpage
 
@@ -301,7 +303,7 @@ Ontologies, which provide a formal representation of terms and their relationshi
 
 Inductive reasoning, on the other hand, is a bottom-up logical process that moves from specific to general. In the context of KGs, it involves learning new rules based on patterns observed in the data. It follows a probabilistic process: specific observations are generalized into rules, which are likely but not guaranteed to be true. A simple example of inductive reasoning could be that "all observed swans are white, therefore all swans are white" \cite{hulme1902proverb}. As history has shown, this is not necessarily true, but it is likely to be true. 
 
-For example, if we observe many instances of a relationship like "Person works at Company" and "Company is located in City", we might induce a rule like "Person lives in City". This process is often used in "rule mining" or "entity prediction" in KGs. Machine learning plays a significant role in inductive reasoning. Machine learning algorithms can be trained to identify patterns in the data and generate new rules based on these patterns.
+For example, if we observe many instances of a relationship like "Ben works at company X" and "company X is located in city Y", we might induce a rule like "Ben lives in city Y". This process is often used in rule mining or entity prediction. Machine learning plays a significant role in inductive reasoning. Machine learning algorithms can be trained to identify patterns in the data and generate new rules based on these patterns.
 
 In conclusion, both deductive and inductive reasoning are crucial for the construction, maintenance and use of KGs. Ontologies and rules provide the foundation for deductive reasoning, while machine learning techniques facilitate both deductive and inductive reasoning by leveraging on the amount of data and its structure in a given KG.
 
@@ -321,20 +323,19 @@ Thus, handling scalability in KGs involves finding balance between performance, 
 
 KGs are particularly suitable for machine learning for a range of reasons. KGs provide a rich, structured representation of data, capturing not only entities but also the relationships between them \cite*{KG21}. This allows ML models to leverage this relational information, which can provide important context and improve performance. The inherent nature of KGs makes it easier to generate features for ML models. For example, the properties of an entity, the types of relationships it has with other entities, or the structure of its neighborhood in the graph can all be used as features.
 
-KGs are also naturally suited to relational learning or graph-based ML methods. Techniques such as Graph Neural Networks (GNNs) or Graph Convolutional Networks (GCNs) can leverage the graph structure of KGs to propagate information across the graph and learn more accurate models \cite*{KG21}. KGs can facilitate transfer learning, where knowledge learned in one context is applied to another. For example, a model trained on one part of the KG can potentially be applied to other parts of the KG, leveraging the shared structure and semantics (onthologies, rules, etc).
+KGs are also naturally suited to relational learning or graph-based ML methods. Techniques such as Graph Neural Networks (\acrshort{gnn}s) or Graph Convolutional Networks (\acrshort{gcn}s) can leverage the graph structure of KGs to propagate information across the graph and learn more accurate models \cite*{KG21}. KGs can facilitate transfer learning, where knowledge learned in one context is applied to another. For example, a model trained on one part of the KG can potentially be applied to other parts of the KG, leveraging the shared structure and semantics (onthologies, rules, etc).
 
-KGs often contain a mix of labeled and unlabeled data, making them suitable for semi-supervised learning approaches. These methods can leverage the large amounts of unlabeled data to improve learning from the smaller amounts of labeled data. The structures and relations and rules can also help with explainability in ML. The reasoning paths in a KG can provide intuitive, human-understandable explanations for the predictions of an ML model.
+KGs often contain a mix of labeled and unlabeled data, making them suitable for semi-supervised learning approaches. These methods can leverage the large amounts of unlabeled data to improve learning from the smaller amounts of labeled data. The structures, relations and rules can also help with explainability in ML. The reasoning paths in a KG can provide intuitive, human-understandable explanations for the predictions of an ML model.
 
 In conclusion, KGs provide a rich, structured, and semantically meaningful source of data that can enhance various aspects of machine learning, from feature generation and model training \cite*{KG21} to transfer learning and explainability.
 
 \section{Conclusion}
 
-This report has provided a comprehensive review of three key papers in the field of Knowledge Graphs (KGs). Each paper was critically evaluated based on its contributions, improvements, and overall quality. The main paper, \citetitle{KG21} \cite*{KG21}, provides an in-depth overview of KGs, with a focus on theoretical concepts. It is a valuable resource for anyone interested in understanding KGs, despite some areas that could benefit from further clarification or practical examples.
+This report has provided a comprehensive review of three key papers in the field of Knowledge Graphs. Each paper was critically evaluated based on its contributions, improvements, and overall quality. The main paper, \citetitle{KG21} \cite*{KG21}, provides an in-depth overview of KGs, with a focus on theoretical concepts. It is a valuable resource for anyone interested in understanding KGs, despite some areas that could benefit from further clarification or practical examples. It's extended version, GitHub repository and references provide additional resources for readers who wish to delve deeper into specific topics.
 
-The second paper, \citetitle{CKG23} \cite*{CKG23}, offers a state-of-the-art review of KG construction, highlighting the need for more open-source toolsets and good data management. However, it is still a preprint and lacks practical examples. The third paper, \citetitle{KGKE22} \cite*{KGKE22}, provides valuable insights into the history and evolution of knowledge engineering. However, only section 3.2 was used for this review, limiting the scope of the critique.
+The second paper, \citetitle{CKG23} \cite*{CKG23}, offers a state-of-the-art review of KG construction, highlighting the need for more open-source toolsets and good data management. However, it is still a preprint and lacks practical examples. The section 3.2 of the third paper, \citetitle{KGKE22} \cite*{KGKE22}, provides valuable insights into the history and evolution of knowledge engineering.
 
 In conclusion, the field of KG have been rapidly evolving especially over the course of the last decade, with significant contributions being made in both theoretical concepts and practical applications. The reviewed papers provide valuable insights into this field and highlight areas for future research and improvement. This report has aimed to critically evaluate these papers and provide a comprehensive overview of the current state of KGs.
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
